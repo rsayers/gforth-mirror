@@ -44,6 +44,7 @@ typedef Label *Xt;
 #endif
 
 Label *engine(Xt *ip, Cell *sp, Cell *rp, Float *fp, Address lp);
+extern Xt *throw_ip;
 
 #ifndef DIRECT_THREADED
 /* i.e. indirect threaded */
