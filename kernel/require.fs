@@ -162,7 +162,3 @@ has? new-input [IF]
 : .included ( -- ) \ gforth
     \G list the names of the files that have been @code{included}
     included-files 2@ .strings ;
-    
-\ contains tools/newrequire.fs
-\ \I $Id$
-
