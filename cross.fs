@@ -738,8 +738,10 @@ bigendian Constant bigendian
 : save-cross ( "name" -- )
   bl parse ." Saving to " 2dup type
   w/o bin create-file throw >r
-  image @ there r@ write-file throw
-  bit$  @ there 1- cell>bit rshift 1+ r@ write-file throw
+  s" gforth00"  r@ write-file throw \ write magic
+  image @ there r@ write-file throw \ write image
+  bit$  @ there 1- cell>bit rshift 1+
+                r@ write-file throw \ write tags
   r> close-file throw ;
 
 \ words that should be in minimal
