@@ -225,9 +225,9 @@ int main(int argc, char **argv, char **env)
       /* no-init-file, no-rc? */
     };
 
-    c = getopt_long(argc, argv, "i:m:d:r:f:l:p:", opts, &option_index);
+    c = getopt_long(argc, argv, "+i:m:d:r:f:l:p:", opts, &option_index);
 #else
-    c = getopt(argc, argv, "i:m:d:r:f:l:p:");
+    c = getopt(argc, argv, "+i:m:d:r:f:l:p:");
 #endif
 
     if (c==EOF)
