@@ -350,7 +350,7 @@ VARIABLE ^imm
                 ^imm @ @ dup <imm> = ?EXIT
                 <res> <> ABORT" CROSS: Cannot immediate a unresolved word"
                 <imm> ^imm @ ! ;
-: restrict      ;
+: restrict      40 flag! ;
 >CROSS
 
 \ ALIAS2 ansforth conform alias                          9may93jaw
