@@ -5,6 +5,8 @@
   This is the machine-specific part for a SPARC
 */
 
+#include "32bit.h"
+
 #if !defined(USE_TOS) && !defined(USE_NO_TOS)
 #define USE_TOS
 #endif
