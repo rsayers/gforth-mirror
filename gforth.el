@@ -617,7 +617,7 @@ The region is sent terminated by a newline."
 ;; Misc
 
 (setq auto-mode-alist (append auto-mode-alist
-				'(("\\.f83$" . forth-mode))))
+				'(("\\.fs$" . forth-mode))))
 
 (defun forth-split ()
   (interactive)
