@@ -15,6 +15,8 @@
 #endif
 #endif
 
+#define LONG_LATENCY
+
 /* cache flush stuff */
 extern void cacheflush(void *, int, int);
 #ifdef DEBUG
