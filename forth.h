@@ -1,5 +1,4 @@
 /*
-  $Id$
   Copyright 1992 by the ANSI figForth Development Group
 */
 

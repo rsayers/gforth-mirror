@@ -1,5 +1,4 @@
 /*
-  $Id$
   Copyright 1992 by the ANSI figForth Development Group
 
   This is the machine-specific part for Intel 386 compatible processors
