@@ -16,6 +16,12 @@ typedef void *Label;
 #define DODOES	4
 #define DOESJUMP	5
 
+/* Some versions of some unices (Linux) have the symbol BIG_ENDIAN defined
+   in their standard headers. Make sure it's undefined -- Lennart */
+#ifdef BIG_ENDIAN
+#undef BIG_ENDIAN
+#endif
+
 #include "machine.h"
 
 /* Forth data types */
