@@ -5,6 +5,10 @@
   This is the machine-specific part for a SPARC
 */
 
+#if !defined(USE_TOS) && !defined(USE_NO_TOS)
+#define USE_TOS
+#endif
+
 /* direct threading is probably faster on the SPARC, but has it been
    tested? Therefore, DIRECT_THREADED is not defined */
 

@@ -5,6 +5,10 @@
   This is the machine-specific part for a HPPA running HP-UX
 */
 
+#if !defined(USE_TOS) && !defined(USE_NO_TOS)
+#define USE_TOS
+#endif
+
 #ifndef INDIRECT_THREADED
 #ifndef DIRECT_THREADED
 #define DIRECT_THREADED
