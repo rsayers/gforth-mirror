@@ -35,7 +35,7 @@ typedef Label Xt;
 typedef Label *Xt;
 #endif
 
-Label *engine(Xt *ip, Cell *sp, Cell *rp, Float *fp);
+Label *engine(Xt *ip, Cell *sp, Cell *rp, Float *fp, Address lp);
 
 #ifndef DIRECT_THREADED
 /* i.e. indirect threaded */
