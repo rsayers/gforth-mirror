@@ -84,7 +84,7 @@ Variable tdp
 
 \ Parameter for target systems                         06oct92py
 
-include machine.fs
+include-file
 
 >TARGET
 
@@ -104,8 +104,9 @@ include machine.fs
 -3 Constant :docon
 -4 Constant :dovar
 -5 Constant :douser
--6 Constant :dodoes
--7 Constant :doesjump
+-6 Constant :dodefer
+-7 Constant :dodoes
+-8 Constant :doesjump
 
 >CROSS
 
@@ -295,7 +296,13 @@ variable ResolveFlag
   Ghostnames
   BEGIN @ dup
   WHILE dup ?resolved
-  REPEAT drop ResolveFlag @ 0= IF ." Nothing!" THEN cr ;
+  REPEAT drop ResolveFlag @
+  IF
+      1 (bye)
+  ELSE
+      ." Nothing!"
+  THEN
+  cr ;
 
 >CROSS
 \ Header states                                        12dec92py
@@ -574,6 +581,7 @@ Builder Value
 Build:  ( -- ) compile noop ;
 DO: ( ghost -- ) ABORT" CROSS: Don't execute" ;DO
 Builder Defer
+by Defer :dodefer resolve
 
 \ structural conditionals                              17dec92py
 

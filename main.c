@@ -63,7 +63,9 @@ void relocate(int *image, char *bitstring, int size, Label symbols[])
 		case CF(DOCOL)   :
 		case CF(DOVAR)   :
 		case CF(DOCON)   :
-		case CF(DOUSER)  : MAKE_CF(image+i,symbols[CF(image[i])]); break;
+		case CF(DOUSER)  : 
+		case CF(DODEFER)  : 
+		  MAKE_CF(image+i,symbols[CF(image[i])]); break;
 		case CF(DODOES)  : MAKE_DOES_CF(image+i,image[i+1]+((int)image));
 		                   break;
 		case CF(DOESJUMP): MAKE_DOES_HANDLER(image+i); break;
