@@ -73,7 +73,6 @@ OBS! All words in forth-negatives must be surrounded by spaces.")
 
 ;(define-key forth-mode-map "\M-\C-x" 'compile)
 (define-key forth-mode-map "\C-x\\" 'comment-region)
-(define-key forth-mode-map "\C-x|" 'uncomment-region)
 (define-key forth-mode-map "\C-x~" 'forth-remove-tracers)
 (define-key forth-mode-map "\e\C-m" 'forth-send-paragraph)
 (define-key forth-mode-map "\eo" 'forth-send-buffer)
