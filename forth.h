@@ -21,6 +21,8 @@ typedef void *Label;
 /* Forth data types */
 typedef int Bool;
 #define FLAG(b) (-(b))
+#define FILEIO(error)	(FLAG(error) & -37)
+#define FILEEXIST(error)	(FLAG(error) & -38)
 
 #define F_TRUE (FLAG(0==0))
 #define F_FALSE (FLAG(0!=0))
@@ -62,7 +64,7 @@ Label *engine(Xt *ip, Cell *sp, Cell *rp, Float *fp, Address lp);
 #endif
 
 #ifdef DEBUG
-#	define	NAME(string)	printf("%08x: %s\n",(int)ip,string);
+#	define	NAME(string)	printf("%08x: "string"\n",(int)ip);
 #else
 #	define	NAME(string)
 #endif
