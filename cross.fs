@@ -23,6 +23,10 @@
 
 \ include other.fs       \ ansforth extentions for cross
 
+: string, ( c-addr u -- )
+    \ puts down string as cstring
+    dup c, here swap chars dup allot move ;
+' falign Alias cfalign
 : comment? ( c-addr u -- c-addr u )
         2dup s" (" compare 0=
         IF    postpone (
