@@ -11,8 +11,9 @@
 #define USE_TOS
 #endif
 
-/* direct threading is probably faster on the SPARC, but has it been
-   tested? Therefore, DIRECT_THREADED is not defined */
+#if !defined(INDIRECT_THREADED) && !defined(DIRECT_THREADED)
+#define DIRECT_THREADED
+#endif
 
 #ifdef DIRECT_THREADED
 #ifndef WORDS_BIGENDIAN
