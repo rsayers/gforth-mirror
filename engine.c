@@ -12,6 +12,7 @@
 #include <fcntl.h>
 #include <assert.h>
 #include <stdlib.h>
+#include <time.h>
 #include "forth.h"
 #include "io.h"
 
