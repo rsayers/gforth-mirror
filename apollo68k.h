@@ -39,7 +39,6 @@ typedef float SFloat;
 #define MAKE_CF(cfa,ca)		({short * _cfa = (short *)cfa; \
 				  _cfa[0] = 0x4ef9; /* jmp.l */ \
 				  *(long *)(_cfa+1) = (long)(ca);})
-#endif
 
 /* this is the point where the does code starts if label points to the
  * jump dodoes */
@@ -52,3 +51,5 @@ typedef float SFloat;
 #define MAKE_DOESJUMP(ca)	({short * _ca = (short *)ca; \
 				  _ca[0] = 0x4ef9; /* jmp.l */ \
 				  *(long *)(_ca+1) = (long)&&dodoes;})
+#endif
+
