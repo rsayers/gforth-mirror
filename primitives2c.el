@@ -65,7 +65,7 @@
 (defun c-filter (forth-name stack-effect standards c-name doku code forth-code)
   "c code for the primitive"
   (let ((effects (parse-stack-effect stack-effect)))
-    (format "I_%s:	/* %s ( %s ) */\n/* %s */\n{\n%s\nNAME(\"%s\")\n{\n%s}\nNEXT_P1;\n%s}\nNEXT1_P2;\n"
+    (format "I_%s:	/* %s ( %s ) */\n/* %s */\n{\nLabel ca;\n%s\nNAME(\"%s\")\n{\n%s}\nNEXT_P1;\n%sNEXT1_P2;\n}\n"
 	    c-name forth-name stack-effect doku
 	    (prefix effects) forth-name code (suffix effects))))
 

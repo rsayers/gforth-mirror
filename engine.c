@@ -53,8 +53,8 @@ typedef struct F83Name {
 #endif
 #define NEXT_P1 ({cfa = *ip++; NEXT1_P1;})
 
-#define NEXT1 ({NEXT1_P1; NEXT1_P2;})
-#define NEXT ({NEXT_P1; NEXT1_P2;})
+#define NEXT1 ({Label ca; NEXT1_P1; NEXT1_P2;})
+#define NEXT ({Label ca; NEXT_P1; NEXT1_P2;})
 
 #ifdef USE_TOS
 #define IF_TOS(x) x
@@ -75,8 +75,8 @@ typedef struct F83Name {
 int emitcounter;
 #define NULLC '\0'
 
-#define cstr(to, from, size)\
-	{	memcpy(to, from, size);\
+#define cstr(to,from,size)\
+	{	memcpy(to,from,size);\
 		to[size]=NULLC;}
 #define NEWLINE	'\n'
 
@@ -98,7 +98,7 @@ Label *engine(Xt *ip, Cell *sp, Cell *rp, Float *fp)
 #include "prim_labels.i"
   };
 #ifndef DIRECT_THREADED
-  Label ca;
+/*  Label ca; */
 #endif
   IF_TOS(register Cell TOS;)
   IF_FTOS(Float FTOS;)
@@ -129,13 +129,14 @@ Label *engine(Xt *ip, Cell *sp, Cell *rp, Float *fp)
      problems with code fields employing calls and delay slots
   */
   {
+    Label ca;
     Xt *current_ip = (Xt *)PFA1(cfa);
     cfa = *current_ip;
     NEXT1_P1;
     *--rp = (Cell)ip;
     ip = current_ip+1;
+    NEXT1_P2;
   }
-  NEXT1_P2;
   
  docon:
 #ifdef DEBUG
