@@ -75,6 +75,13 @@ create image-included-files 4 , A, ( pointer to and count of included files )
     2/ cell / included-files 2!
     2! ;
 
+has? new-input [IF]
+: included1 ( i*x file-id c-addr u -- j*x ) \ gforth
+    \G Include the file file-id with the name given by @var{c-addr u}.
+    save-mem add-included-file ( file-id )
+    included-files @ 1- ['] include-file2 catch
+    throw ;
+[ELSE]
 : included1 ( i*x file-id c-addr u -- j*x ) \ gforth
     \G Include the file file-id with the name given by @var{c-addr u}.
     loadfilename# @ >r
@@ -83,7 +90,8 @@ create image-included-files 4 , A, ( pointer to and count of included files )
     ['] include-file2 catch
     r> loadfilename# !
     throw ;
-    
+[THEN]
+
 : included ( i*x c-addr u -- j*x ) \ file
     \G @code{include-file} the file whose name is given by the string
     \G @var{c-addr u}.
