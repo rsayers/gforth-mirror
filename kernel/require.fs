@@ -1,6 +1,6 @@
 \ require.fs
 
-\ Copyright (C) 1995-1997 Free Software Foundation, Inc.
+\ Copyright (C) 1995,1996,1997,1998 Free Software Foundation, Inc.
 
 \ This file is part of Gforth.
 
@@ -19,8 +19,6 @@
 \ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 \ Now: Kernel Module, Reloadable
-
-\ $Id$
 
 create included-files 0 , 0 , ( pointer to and count of included files )
 here ," ./the terminal" dup c@ swap 1 + swap , A, here 2 cells -
