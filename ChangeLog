@@ -1,4 +1,21 @@
+2003-03-11  Anton Ertl  <anton@mips.complang.tuwien.ac.at>
+
+	* backtrac.fs: minor bugfix (bug located by Jorge Acereda)
+
+2003-03-11  Bernd Paysan  <pazsan@mips.complang.tuwien.ac.at>
+
+	* kernel/int.fs:
+	Fixed -trailing (cures cross.fs bug for big endian machine...)
+
 2003-03-09  Anton Ertl  <anton@mips.complang.tuwien.ac.at>
+
+	* NEWS, README: fixed typos
+
+	* NEWS.vmgen: added NEWS.vmgen
+
+	* gforth.lsm: updated gforth.lsm
+
+	* ChangeLog: updated Changelog
 
 	* configure.in, INSTALL, Makefile.in, NEWS, README:
 	updated version number
