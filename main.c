@@ -123,6 +123,11 @@ int main(int argc, char **argv, char **env)
 	Cell environ[3] = {(Cell)argc, (Cell)argv, (Cell)env};
 	char* imagepath;
 
+#if defined(i386) && defined(ALIGNMENT_CHECK)
+	/* turn on alignment checks on the 486.
+	 * on the 386 this should have no effect. */
+	__asm__("pushfl; popl %eax; orl $0x40000, %eax; pushl %eax; popfl;");
+#endif
 	if((int)(imagepath=getenv("FORTHBIN")))
 	{
 		strcpy(imagefile,imagepath);

@@ -134,7 +134,8 @@ include machine.fs
 : cell+         cell + ;
 : cells         cell<< lshift ;
 : chars         ;
-
+: floats	float * ;
+    
 >CROSS
 : cell/         cell<< rshift ;
 >TARGET
@@ -487,6 +488,8 @@ Cond: [Char]   ( "<char>" -- )  restrict? Char  lit, ;Cond
   docol, depth T ] H ;
 
 Cond: EXIT ( -- )  restrict?  compile ;S  ;Cond
+
+Cond: ?EXIT ( -- ) 1 abort" CROSS: using ?exit" ;Cond
 
 Cond: ; ( -- ) restrict?
                depth ?dup IF   1- <> ABORT" CROSS: Stack changed"

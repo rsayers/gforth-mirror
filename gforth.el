@@ -121,6 +121,7 @@ OBS! All words in forth-negatives must be surrounded by spaces.")
   (make-local-variable 'parse-sexp-ignore-comments)
   (setq parse-sexp-ignore-comments t))
   
+;;;###autoload
 (defun forth-mode ()
   "
 Major mode for editing Forth code. Tab indents for Forth code. Comments
