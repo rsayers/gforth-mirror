@@ -12,15 +12,6 @@
 \     1 cells: field enum-method
 \ end-struct ext-wordlist-map \ with the fields search-method,...,enum-method
 
-\ 2, 2constant and nalign should be somewhere else
-: 2, ( w1 w2 -- )
- here 2 cells allot 2! ;
-
-: 2constant ( w1 w2 -- )
-    create 2,
-    does>  ( -- w1 w2 )
-	2@ ;
-
 : nalign ( addr1 n -- addr2 )
 \ addr2 is the aligned version of addr1 wrt the alignment size n
  1- tuck +  swap invert and ;
@@ -62,3 +53,14 @@
 \ 
 \ : sfloats: ( n -- size align )
 \     sfloats 1 sfloats ;
+
+: struct-align ( size align -- )
+    dp @ swap nalign dp !
+    drop ;
+
+: struct-allot ( size align -- addr )
+    over swap struct-align
+    here swap allot ;
+
+: struct-allocate ( size align -- addr )
+    drop allocate ;
