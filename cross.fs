@@ -121,24 +121,17 @@ H
 
 >CROSS
 
-bigendian  0 pad ! -1 pad c! pad @ 0<
-= [IF]
-\   : bswap ; immediate 
-: T!  ( n addr -- )  >r s>d r> tcell bounds swap 1-
-  DO  maxbyte ud/mod rot I c!  -1 +LOOP  2drop ;
-: T@  ( addr -- n )  >r 0 0 r> tcell bounds
-  DO  maxbyte * swap maxbyte um* rot + swap I c@ + swap  LOOP d>s ;
-
+bigendian
+[IF]
+   : T!  ( n addr -- )  >r s>d r> tcell bounds swap 1-
+     DO  maxbyte ud/mod rot I c!  -1 +LOOP  2drop ;
+   : T@  ( addr -- n )  >r 0 0 r> tcell bounds
+     DO  maxbyte * swap maxbyte um* rot + swap I c@ + swap  LOOP d>s ;
 [ELSE]
-: T!  ( n addr -- )  >r s>d r> tcell bounds
-  DO  maxbyte ud/mod rot I c!  LOOP  2drop ;
-: T@  ( addr -- n )  >r 0 0 r> tcell bounds swap 1-
-  DO  maxbyte * swap maxbyte um* rot + swap I c@ + swap  -1 +LOOP d>s ;
-
-\   : bswap ( big / little -- little / big )  0
-\           cell 1- FOR  bits/byte lshift over
-\                        [ 1 bits/byte lshift 1- ] Literal and or
-\                        swap bits/byte rshift swap  NEXT  nip ;
+   : T!  ( n addr -- )  >r s>d r> tcell bounds
+     DO  maxbyte ud/mod rot I c!  LOOP  2drop ;
+   : T@  ( addr -- n )  >r 0 0 r> tcell bounds swap 1-
+     DO  maxbyte * swap maxbyte um* rot + swap I c@ + swap  -1 +LOOP d>s ;
 [THEN]
 
 \ Memory initialisation                                05dec92py
