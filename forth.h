@@ -70,3 +70,7 @@ Label *engine(Xt *ip, Cell *sp, Cell *rp, Float *fp);
 #define CF(const)	(-const-2)
 
 #define CF_NIL	-1
+
+#ifndef CACHE_FLUSH
+#	define CACHE_FLUSH(addr,size)
+#endif

@@ -74,6 +74,8 @@ void relocate(int *image, char *bitstring, int size, Label symbols[])
 				}
 			else
 				image[i]+=(Cell)image;
+
+	CACHE_FLUSH(image,size);
 }
 
 int* loader(const char* filename)

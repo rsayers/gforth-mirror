@@ -4,7 +4,16 @@
 
   This is the machine-specific part for a Decstation running Ultrix
 */
+/* cache flush stuff */
 
+#ifdef DIRECT_THREADED
+
+#include <mips/cachectl.h>
+
+#define CACHE_FLUSH(addr,size) \
+				cacheflush((char *)(addr), (int)(size), BCACHE)
+
+#endif
 
 /* Cell and UCell must be the same size as a pointer */
 typedef long Cell;
