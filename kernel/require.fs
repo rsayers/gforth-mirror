@@ -28,10 +28,9 @@ here ," *a block*" dup c@ swap 1 + swap
 here ," *evaluated string*" dup c@ swap 1 + swap
 here ," *the terminal*" dup c@ swap 1 + swap
 , A, , A, , A, , A, here 8 cells -
-create image-included-files 4 , A, ( pointer to and count of included
-\ files ) included-files points to ALLOCATEd space, while
-\ image-included-files points to ALLOTed objects, so it survives a
-\ save-system
+create image-included-files 4 , A, ( pointer to and count of included files )
+\ included-files points to ALLOCATEd space, while image-included-files
+\ points to ALLOTed objects, so it survives a save-system
 
 : sourcefilename ( -- c-addr u ) \ gforth
     \G The name of the source file which is currently the input
