@@ -931,9 +931,9 @@ behaviour is uundefined""
 defining-word-defined */
 a_addr = DOES_CODE(xt);
 
-code-address!		c_addr xt --	new	code_address_store
+code-address!		n xt --	new	code_address_store
 ""Creates a code field with code address c_addr at xt""
-MAKE_CF(xt, c_addr);
+MAKE_CF(xt, symbols[CF(n)]);
 
 does-code!	a_addr xt --		new	does_code_store
 ""creates a code field at xt for a defining-word-defined word; a_addr
@@ -980,3 +980,6 @@ lp -= sizeof(Cell);
 f>l	r --	new	f_to_l
 lp -= sizeof(Float);
 *(Float *)lp = r;
+
+up!	a_addr --	new	up_store
+up=a_addr;
