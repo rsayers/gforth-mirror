@@ -7,12 +7,12 @@
 
 #include "32bit.h"
 
-#ifdef DIRECT_THREADED
-
-#define CACHE_FLUSH(addr,size)    cache_$clear()
+#define FLUSH_ICACHE(addr,size)    cache_$clear()
 /* Clearing the whole cache is a bit drastic, but this is the only
    cache control available on the apollo.
 */
+
+#ifdef DIRECT_THREADED
 
 /* PFA gives the parameter field address corresponding to a cfa */
 #define PFA(cfa)	(((Cell *)cfa)+2)

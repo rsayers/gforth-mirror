@@ -18,7 +18,7 @@
 
 : field ( offset1 align1 size align -- offset2 align2 )
 \ note: this version uses local variables
-     Header reveal -7 ( [ :dostruc ] Literal ) cfa,
+     Header reveal dofield: cfa,
 	>r rot r@ nalign  dup ,  ( align1 size offset )
 	+ swap r> nalign ;
 
