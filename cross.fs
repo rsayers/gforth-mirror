@@ -408,6 +408,8 @@ ghost '
 
 Cond: [']  compile lit ghost gexecute ;Cond
 
+Cond: chars ;Cond
+
 >CROSS
 \ tLiteral                                             12dec92py
 
