@@ -60,3 +60,13 @@ typedef float SFloat;
 /* OS dependences */
 
 #define SEEK_SET 0
+
+#define memmove(a,b,c) ({ if((long)(a)<(long)(b)) memcpy(a,b,c); \
+			  else \
+			    {  int i; \
+			       for(i=(c)-1; i>=0; i--) \
+				  (char*)a[i]=(char*)b[i]; \
+			    } \
+			})
+#define strtoul(a,b,c) strtol(a,b,c)
+
