@@ -110,7 +110,7 @@ include-file
 
 >CROSS
 
-endian  0 pad ! -1 pad c! pad @ 0<
+bigendian  0 pad ! -1 pad c! pad @ 0<
 = [IF]   : bswap ; immediate 
 [ELSE]   : bswap ( big / little -- little / big )  0
            cell 1- FOR  bits/byte lshift over
@@ -733,7 +733,7 @@ Cond: [ELSE]    [ELSE] ;Cond
 \ [THEN]
 \ included throw after create-file                     11may93jaw
 
-endian Constant endian
+bigendian Constant bigendian
 
 : save-cross ( "name" -- )
   bl parse ." Saving to " 2dup type
