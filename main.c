@@ -79,8 +79,7 @@ void relocate(Cell *image, char *bitstring, int size, Label symbols[])
 		case CF(DOVAR)   :
 		case CF(DOCON)   :
 		case CF(DOUSER)  : 
-		case CF(DODEFER)  : 
-		  MAKE_CF(image+i,symbols[CF(image[i])]); break;
+		case CF(DODEFER) : MAKE_CF(image+i,symbols[CF(image[i])]); break;
 		case CF(DODOES)  : MAKE_DOES_CF(image+i,image[i+1]+((int)image));
 		                   break;
 		case CF(DOESJUMP): MAKE_DOES_HANDLER(image+i); break;
@@ -151,11 +150,12 @@ int go_forth(Cell *image, int stack, Cell *entries)
 	if ((throw_code=setjmp(throw_jmp_buf))) {
 		static Cell signal_data_stack[8];
 		static Cell signal_return_stack[8];
+      static Float signal_fp_stack[1];
 
 		signal_data_stack[7]=throw_code;
 
 		return((int)engine((Xt *)image[4],signal_data_stack+7,
-				                  signal_return_stack+8,0,0));
+				                  signal_return_stack+8,signal_fp_stack,0));
 	}
 
 	return((int)engine(ip,sp,rp,fp,lp));

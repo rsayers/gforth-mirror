@@ -71,7 +71,7 @@ Label *engine(Xt *ip, Cell *sp, Cell *rp, Float *fp, Address lp);
 #endif
 
 #ifdef DEBUG
-#	define	NAME(string)	printf("%08x: "string"\n",(int)ip);
+#	define	NAME(string)	fprintf(stderr,"%08x: "string"\n",(int)ip);
 #else
 #	define	NAME(string)
 #endif
