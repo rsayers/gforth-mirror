@@ -22,8 +22,8 @@ extern void cacheflush(void *, int, int);
 ({ \
    fprintf(stderr,"Flushing Cache at %08x:%08x\n",(int) addr, size); \
    fflush(stderr); \
-   fprintf(stderr,"Cache flushed, final address: %08x\n", \
-	   (int)cacheflush((void *)(addr), (int)(size), 32)); })
+   cacheflush((void *)(addr), (int)(size), 32); \
+   fprintf(stderr,"Cache flushed\n");  })
 #else
 #  define FLUSH_ICACHE(addr,size) \
      cacheflush((void *)(addr), (int)(size), 32)
