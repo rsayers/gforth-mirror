@@ -17,14 +17,12 @@
 
 #ifdef DIRECT_THREADED
 #ifndef WORDS_BIGENDIAN
-#error Direct threading only supported for big-endian machines.
+#error Direct threading only supported for big-endian SPARCs.
 /* little endian SPARCs still store instructions in big-endian format,
    so you would have to reverse the instructions stores in the following
 */
 #endif
 
-/* according to the SPARC V9 architecture manual, we have to use flush,
-   but as V2.20 does not recognize the opcode */
 /* assuming size = 8 */
 #define CACHE_FLUSH(addr,size) \
   asm("iflush %0; iflush %0+4"::"r"(addr))
