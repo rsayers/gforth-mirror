@@ -16,6 +16,10 @@
 #include "io.h"
 #include "getopt.h"
 
+#ifdef MSDOS
+jmp_buf throw_jmp_buf;
+#endif
+
 #ifndef DEFAULTPATH
 #  define DEFAULTPATH "/usr/local/lib/gforth:."
 #endif
