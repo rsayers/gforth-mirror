@@ -14,15 +14,9 @@
 #include <stdlib.h>
 #include <time.h>
 #include <sys/time.h>
+#include <sys/unistd.h>
 #include "forth.h"
 #include "io.h"
-
-#ifndef unlink
-	extern unlink(char *);
-#endif
-#ifndef ftruncate
-	extern ftruncate(int, int);
-#endif
 
 typedef union {
   struct {
@@ -86,30 +80,6 @@ int emitcounter;
 #define NEWLINE	'\n'
 
 static char* fileattr[6]={"r","rb","r+","r+b","w+","w+b"};
-
-#if ~defined(select) && defined(DOS)
-/* select replacement for DOS computers for ms only */
-void select(int n, int a, int b, int c, struct timeval * timeout)
-{
-   struct timeval time1;
-   struct timeval time2;
-   struct timezone zone1;
-
-   gettimeofday(&time1,&zone1);
-   time1.tv_sec += timeout->tv_sec;
-   time1.tv_usec += timeout->tv_usec;
-   while(time1.tv_usec >= 1000000)
-     {
-	time1.tv_usec -= 1000000;
-	time1.tv_sec++;
-     }
-   do
-     {
-	gettimeofday(&time2,&zone1);
-     }
-   while(time2.tv_usec < time1.tv_usec || time2.tv_sec < time1.tv_sec);
-}
-#endif
 
 Label *engine(Xt *ip, Cell *sp, Cell *rp, Float *fp, Address lp)
 /* executes code at ip, if ip!=NULL
