@@ -37,7 +37,7 @@ typedef float SFloat;
 #define PFA1(cfa)	PFA(cfa)
 /* CODE_ADDRESS is the address of the code jumped to through the code field */
 #define CODE_ADDRESS(cfa) \
-    ({long _cfa = (char *)(cfa); (Label)(_cfa+*((long *)(_cfa+1))+5);})
+    ({long _cfa = (long)(cfa); (Label)(_cfa+*((long *)(_cfa+1))+5);})
 /* MAKE_CF creates an appropriate code field at the cfa; ca is the code address */
 #define MAKE_CF(cfa,ca)	({long _cfa = (long)(cfa); \
                           long _ca  = (long)(ca); \
