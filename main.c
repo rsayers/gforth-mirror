@@ -30,7 +30,7 @@ jmp_buf throw_jmp_buf;
 #  define CA(n)	((Cell)(symbols+(n)))
 #endif
 
-#define maxaligned(n)	((((Cell)n)+sizeof(Float)-1)&-sizeof(Float))
+#define maxaligned(n)	(typeof(n))((((Cell)n)+sizeof(Float)-1)&-sizeof(Float))
 
 static Cell dictsize=0;
 static Cell dsize=0;
@@ -128,7 +128,8 @@ Cell *loader(FILE *imagefile)
   
   wholesize = dictsize+dsize+rsize+fsize+lsize;
   imagesize = header[1]+((header[1]-1)/sizeof(Cell))/8+1;
-  image=malloc(wholesize>imagesize?wholesize:imagesize);
+  image=malloc((wholesize>imagesize?wholesize:imagesize)+sizeof(Float));
+  image = maxaligned(image);
   memset(image,0,wholesize); /* why? - anton */
   image[0]=header[0];
   image[1]=header[1];
