@@ -26,6 +26,10 @@ typedef float SFloat;
 /* define this if the least-significant byte is at the largets address */
 /* #define BIG_ENDIAN */
 
+/* define this if the processor cannot exploit instruction-level
+   parallelism and/or has few registers */
+#define CISC_NEXT
+
 #ifdef DIRECT_THREADED
 /* PFA gives the parameter field address corresponding to a cfa */
 #define PFA(cfa)	(((Cell *)cfa)+2)
@@ -55,6 +59,3 @@ typedef float SFloat;
 #endif
 
 #define rint(x)	floor((x)+0.5)
-/*
-#define CISC_NEXT
-*/

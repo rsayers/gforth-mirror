@@ -16,10 +16,6 @@
 #include "io.h"
 #include "getopt.h"
 
-#ifndef DEFAULTBIN
-#	define DEFAULTBIN ""
-#endif
-
 #ifndef DEFAULTPATH
 #	define DEFAULTPATH "/usr/local/lib/gforth:."
 #endif
