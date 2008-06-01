@@ -58,7 +58,7 @@ TRUE CONSTANT HAS-MEMORY-WORDS?
 
 \ FSL NonANS words
 
-: S>F    S>D D>F ;
+[UNDEFINED] S>F [IF] : S>F    S>D D>F ; [THEN]
 
 \ Words to control nested includes.  Use as follows:
 \ C" filename" ~INCLUDED [IF]
