@@ -20,24 +20,30 @@
 \ idea: Gerald Wodni
 
 : addr? ( addr -- flag )
-    TRY  @  IFERROR  2drop  false nothrow  ELSE  drop  true  THEN   ENDTRY ;
+    TRY  c@  IFERROR  2drop  false nothrow  ELSE  drop  true  THEN   ENDTRY ;
+: .var? ( addr -- flag )
+    TRY  body> @ dovar: <> throw  IFERROR  2drop false nothrow
+	ELSE  true  THEN   ENDTRY ;
 
 : string? ( addr u -- flag )
-    TRY  bounds ?DO  I c@ bl < IF  -1 throw  THEN  LOOP
+    TRY  dup #80 u> throw  bounds ?DO  I c@ bl < IF  -1 throw  THEN  LOOP
 	IFERROR  2drop drop false nothrow ELSE  true  THEN  ENDTRY ;
 
 : .string. ( addr u -- )
     .\" s\" " type '"' emit space ;
-: .addr. ( addr -- )  hex. ;
+: .addr. ( addr -- )
+    dup >name dup IF  ." ' " .name drop  ELSE  drop hex.  THEN ;
+: .var. ( addr -- )
+    dup body> >name dup IF  .name drop  ELSE  drop hex.  THEN ;
 
 Variable smart.s-skip
 
 : smart.s. ( n -- )
     smart.s-skip @  smart.s-skip off IF  drop  EXIT  THEN
-    over r> i swap >r -
+    over r> i swap >r - \ we access the .s loop counter
     dup 1 = IF  false  ELSE  pick  2dup string?  THEN  IF
 	.string. smart.s-skip on
-    ELSE  drop dup addr? IF  .addr.
+    ELSE  drop dup addr? IF  dup .var? IF  .var.  ELSE  .addr.  THEN
 	ELSE  .  THEN
     THEN ;
 
