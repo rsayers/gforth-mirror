@@ -2,23 +2,21 @@
 
 # takes as extra argument a directory where to look for .so-s
 
-if [ -z "$ENGINE" ]
+if [ "$1" == "-ditc" ]
 then
-   ENGINE=-fast
-   EXT=""
-else
-   EXT=$ENGINE
+    ENGINE=-ditc
+    shift
 fi
 
-<<<<<<< HEAD
-<<<<<<< build.sh
-sed -e 's/android:value="gforth-[a-z]*"/android:value="gforth'$ENGINE'"/g' <AndroidManifest.xml >AndroidManifest.xml+
-=======
+if [ -z "$ENGINE" ]
+then
+    ENGINE=-fast
+    EXT=""
+else
+    EXT=$ENGINE
+fi
+
 sed -e 's/android:value="gforth[a-z-]*"/android:value="gforth'$ENGINE'"/g' <AndroidManifest.xml >AndroidManifest.xml+
->>>>>>> 1.12
-=======
-sed -e 's/android:value="gforth[a-z-]*"/android:value="gforth'$ENGINE'"/g' <AndroidManifest.xml >AndroidManifest.xml+
->>>>>>> refs/heads/origin
 mv AndroidManifest.xml+ AndroidManifest.xml
 
 SRC=../../..
